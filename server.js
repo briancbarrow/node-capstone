@@ -29,3 +29,6 @@ app.listen(process.env.PORT || 8080);
 // };
 
 // getFromApi({api_key: 'K6Rk27YUc5philzJXBjAevmQn0aNSsfD', season: '2015', team_id: 1610612745});
+
+exports.app = app;
+// exports.storage = storage;
