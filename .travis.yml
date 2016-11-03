@@ -8,3 +8,10 @@ addons:
     - mongodb-3.2-precise
     packages:
     - mongodb-org-server
+deploy:
+  provider: heroku
+  api_key:
+    secure: EHlqkG7HsIYC4fLBZKHuFhgsctE/hLXKZ2BeCtnExVtB2WqMcE0YC2JNQDlU+pwl4rU8SqcGTa2QG5GBmkMR1H0g+9mCTY2Bol1kTMB95KxrWrGa85E1AnEoXIfGk5CmD4F4kP3DXRLgKErkpuQe4naHfFhVssbPJGl2hzPtVsFJuMg1zVZAH7dzDavLXY6p6exBef/tTAPaFsfXrfoBbwbByASL+m/pWzwwYpodJXeb8iH8l5vtnEWBQBKuD4hW4mMlpau7rYayq5C34FNIqtiCMvTJh9RutVDj2ENHiaPUNYCF3v7VGHqUiF/9eIKuMyq5mxP0CEShgEz7onYeP+JU30Ib6kUX89gugKetwux4Cu9MZ5VeBfiqGr3oryZTFPC953rRRqIm3RW3bmFLruiCwmyl6eSx0+qai+0Pu6BUW8NUcOYB6mYPCiQMSZ6GKTjxR8S5YNY5IrWMy0ypD0rgbvFv1aPiWMECLKDYsgJDkMCNVXq+QcgV3C/6ZwrL3zfuGOZdYVJIQbFum0UpfhkBTSfqnOylku1IzppnPS2lUcqo0gZ3F72temaIrfj1Npah3q0p0RVAJTvjdCKn1Vj1Bbf0+tYxB0XhzmFP/T2opG1aIM25z677E/WdkHTVx/C+QVEqJRlbWIkgqG+tWuadQIZVS9IhSkYpU5XdnJ8=
+  app: fast-dusk-74105
+  on:
+    repo: briancbarrow/node-capstone
