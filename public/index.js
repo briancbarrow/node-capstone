@@ -65,11 +65,11 @@ $('document').ready(function() {
                             .attr('transform', function(dot) {
                                 if(team === undefined) {
                                     var y = yScale(parseFloat(dot.avgMin));
-                                    var x = xScale(parseFloat(dot['$/game']));
+                                    var x = xScale(parseFloat(dot['$/Minute']));
                                     return 'translate(' + x +',' + y + ')';
                                 } else if(dot.Tm === team) {
                                     var y = yScale(parseFloat(dot.avgMin));
-                                    var x = xScale(parseFloat(dot['$/game']));
+                                    var x = xScale(parseFloat(dot['$/Minute']));
                                     return 'translate(' + x +',' + y + ')';
                                 } else {
                                     return 'translate(-10, -10)';
