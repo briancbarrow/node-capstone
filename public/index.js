@@ -11,7 +11,7 @@ $('document').ready(function() {
             // })
             console.log(players)
             var xDomain = d3.extent(players, function(d) {
-                return parseInt(d['$/game'],10);
+                return parseInt(d['$/Minute'],10);
             });
             
             var viz = d3.select('#main-chart')
