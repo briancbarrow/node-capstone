@@ -63,7 +63,11 @@ $('document').ready(function() {
                             .attr('class', 'dots')
                             .attr('r', 5)
                             .attr('transform', function(dot) {
-                                if(dot.Tm === team) {
+                                if(team === undefined) {
+                                    var y = yScale(parseFloat(dot.avgMin));
+                                    var x = xScale(parseFloat(dot['$/game']));
+                                    return 'translate(' + x +',' + y + ')';
+                                } else if(dot.Tm === team) {
                                     var y = yScale(parseFloat(dot.avgMin));
                                     var x = xScale(parseFloat(dot['$/game']));
                                     return 'translate(' + x +',' + y + ')';
@@ -108,7 +112,7 @@ $('document').ready(function() {
         });
     };
     
-    moneyPerMinute('UTA');
+    moneyPerMinute();
 });
 
 
