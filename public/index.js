@@ -3,9 +3,9 @@ $('document').ready(function() {
     width = screen.width * .85,
     padding = 50;
     
-    var moneyPerMinute = function() {
+    var moneyPerMinute = function(team) {
     
-        d3.csv('capstone.csv', function(players) {
+        d3.csv('stats.csv', function(players) {
             // var data = players.map(function(d) {
             //     console.log('d', d);
             // })
@@ -63,9 +63,9 @@ $('document').ready(function() {
                             .attr('class', 'dots')
                             .attr('r', 5)
                             .attr('transform', function(dot) {
-                                if(dot.Tm === 'UTA') {
-                                    var y = yScale(dot.avgMin);
-                                    var x = xScale(dot['$/game']);
+                                if(dot.Tm === team) {
+                                    var y = yScale(parseFloat(dot.avgMin));
+                                    var x = xScale(parseFloat(dot['$/game']));
                                     return 'translate(' + x +',' + y + ')';
                                 } else {
                                     return 'translate(-10, -10)';
@@ -78,11 +78,37 @@ $('document').ready(function() {
             var tool = d3.select('body')
                             .append('div')
                             .attr('class', 'tooltip')
-                            .style('opacity', '0');
+                            .style('opacity', '0')
+                            .style('background-color', '#000');
+            
+            dots.on('mouseover', function(d) {
+                d3.select(this)
+                    .style('fill', 'green');
+                    
+                    
+                tool.transition()
+                    .duration(200);
+                tool.html('<p class="tool-text">' + d.Player + '</p>' +
+                            '<p class="tool-text">' + d.Pos + '</p>' + 
+                            '<p class="tool-text">' + d.Tm + '</p>' + 
+                            '<p class="tool-text"> $' + parseFloat(d['$/Minute']).toFixed(2) +' per minute</p>')
+                    .style('opacity', '0.9')
+                    .style('left', (d3.event.pageX + 20) + 'px')
+                    .style('top', (d3.event.pageY - 50) + 'px');
+            });
+            
+            dots.on('mouseout', function(d) {
+                d3.select(this)
+                    .style('fill', '#fff');
+                tool.transition()
+                    .duration(500)
+                tool.html('')
+                    .style('opacity', '0');
+            });
         });
     };
     
-    moneyPerMinute();
+    moneyPerMinute('UTA');
 });
 
 
