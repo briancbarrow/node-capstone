@@ -3,6 +3,24 @@ $('document').ready(function() {
     width = screen.width * .85,
     padding = 50;
     
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    };
+    
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+    
     var moneyPerMinute = function(team) {
     
         d3.csv('stats.csv', function(players) {
@@ -105,10 +123,64 @@ $('document').ready(function() {
                 d3.select(this)
                     .style('fill', '#fff');
                 tool.transition()
-                    .duration(500)
+                    .duration(500);
                 tool.html('')
                     .style('opacity', '0');
             });
+            
+            var selectTeam = function(team) {
+                var Tmdots = viz.selectAll('.Tmdots')
+                            .data(players)
+                            .enter()
+                            .append('circle')
+                            .attr('class', 'Tmdots')
+                            .attr('r', 5)
+                            .attr('transform', function(dot) {
+                                if(dot.Tm === team) {
+                                    var y = yScale(parseFloat(dot.avgMin));
+                                    var x = xScale(parseFloat(dot['$/Minute']));
+                                    return 'translate(' + x +',' + y + ')';
+                                } else {
+                                    return 'translate(-10, -10)';
+                                }
+                            })
+                            .style('stroke', 'blue')
+                            .style('fill', 'red')
+                            .style('stroke-width', 1.5);
+                            
+                Tmdots.on('mouseover', function(d) {
+                    d3.select(this)
+                        .style('fill', 'green');
+                        
+                        
+                    tool.transition()
+                        .duration(200);
+                    tool.html('<p class="tool-text">' + d.Player + '</p>' +
+                                '<p class="tool-text">' + d.Pos + '</p>' + 
+                                '<p class="tool-text">' + d.Tm + '</p>' + 
+                                '<p class="tool-text"> $' + parseFloat(d['$/Minute']).toFixed(2) +' per minute</p>')
+                        .style('opacity', '0.9')
+                        .style('left', (d3.event.pageX + 20) + 'px')
+                        .style('top', (d3.event.pageY - 50) + 'px');
+                });
+                
+                Tmdots.on('mouseout', function(d) {
+                    d3.select(this)
+                        .style('fill', 'red');
+                    tool.transition()
+                        .duration(500);
+                    tool.html('')
+                        .style('opacity', '0');
+                });
+            };
+            
+            selectTeam('UTA');
+        });
+        $('.dropbtn').on('click', function() {
+            myFunction();
+        });
+        $('#myDropdown').on('click', function(e) {
+            console.log(e.target.text);
         });
     };
     
