@@ -127,7 +127,8 @@ $('document').ready(function() {
             dots.on('mouseout', function(d) {
                 d3.select(this)
                     .style('fill', '#fff')
-                    .attr('r', 4);
+                    .style('stroke', 'black')
+                    .attr('r', 5);
                 tool.transition()
                     .duration(500);
                 tool.html('')
