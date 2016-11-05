@@ -1,6 +1,6 @@
 $('document').ready(function() {
     var height = screen.height * .60,
-    width = screen.width * 1.00,
+    width = screen.width * .8,
     padding = 50;
     
     function myFunction() {
@@ -97,7 +97,7 @@ $('document').ready(function() {
                                 }
                             })
                             .style('stroke', '#000')
-                            .style('fill', '#fff')
+                            .style('fill', '#ffe34c')
                             .style('stroke-width', 1.5);
                             
             var tool = d3.select('body')
@@ -108,7 +108,7 @@ $('document').ready(function() {
             
             dots.on('mouseover', function(d) {
                 d3.select(this)
-                    .style('fill', 'gray')
+                    .style('fill', '#A3F7B5')
                     .style('stroke', 'white')
                     .attr('r', 6);
                     
@@ -126,7 +126,7 @@ $('document').ready(function() {
             
             dots.on('mouseout', function(d) {
                 d3.select(this)
-                    .style('fill', '#fff')
+                    .style('fill', '#ffe34c')
                     .style('stroke', 'black')
                     .attr('r', 5);
                 tool.transition()
@@ -152,13 +152,13 @@ $('document').ready(function() {
                                     return 'translate(-10, -10)';
                                 }
                             })
-                            .style('stroke', 'blue')
-                            .style('fill', 'red')
+                            .style('stroke', '#A3F7B5')
+                            .style('fill', '#086788')
                             .style('stroke-width', 1.5);
                             
                 Tmdots.on('mouseover', function(d) {
                     d3.select(this)
-                        .style('fill', 'green');
+                        .style('fill', '#A3F7B5');
                         
                         
                     tool.transition()
@@ -174,7 +174,7 @@ $('document').ready(function() {
                 
                 Tmdots.on('mouseout', function(d) {
                     d3.select(this)
-                        .style('fill', 'red');
+                        .style('fill', '#006032');
                     tool.transition()
                         .duration(500);
                     tool.html('')

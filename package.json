@@ -4,7 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "build:css": "npm run clean:css && lessc --source-map public/css/main.less public/css/node-capstone.css",
+    "clean:css": "rm -f css/node-capstone.css css/node-capstone.css.map"
   },
   "author": "Brian Barrow",
   "license": "ISC",
@@ -20,6 +22,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
+    "less": "^2.7.1",
     "mocha": "^3.1.2"
   }
 }
