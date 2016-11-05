@@ -1,6 +1,6 @@
 $('document').ready(function() {
-    var height = screen.height * .75,
-    width = screen.width * .85,
+    var height = screen.height * .60,
+    width = screen.width * 1.00,
     padding = 50;
     
     function myFunction() {
@@ -36,7 +36,9 @@ $('document').ready(function() {
                         .append('svg')
                         .attr('id', 'main-svg')
                         .attr('height', height +  padding)
-                        .attr('width', width);
+                        .attr('width', width)
+                        .attr('fill', 'gray')
+                        .style('background-color', 'black')
             
             
             var yDomain = d3.extent(players, function(d) {
@@ -70,6 +72,7 @@ $('document').ready(function() {
                 .call(xAxis)
                 .selectAll('text')
                 .style('text-anchor', 'end')
+                .style('fill', 'gray')
                 .attr('dx', '-.8em')
                 .attr('dy', '.855em')
                 .attr('transform', 'rotate(-45)');
@@ -105,7 +108,9 @@ $('document').ready(function() {
             
             dots.on('mouseover', function(d) {
                 d3.select(this)
-                    .style('fill', 'green');
+                    .style('fill', 'gray')
+                    .style('stroke', 'white')
+                    .attr('r', 6);
                     
                     
                 tool.transition()
@@ -121,7 +126,8 @@ $('document').ready(function() {
             
             dots.on('mouseout', function(d) {
                 d3.select(this)
-                    .style('fill', '#fff');
+                    .style('fill', '#fff')
+                    .attr('r', 4);
                 tool.transition()
                     .duration(500);
                 tool.html('')
@@ -129,12 +135,13 @@ $('document').ready(function() {
             });
             
             var selectTeam = function(team) {
+                console.log('triggered Select Team')
                 var Tmdots = viz.selectAll('.Tmdots')
                             .data(players)
                             .enter()
                             .append('circle')
                             .attr('class', 'Tmdots')
-                            .attr('r', 5)
+                            .attr('r', 6)
                             .attr('transform', function(dot) {
                                 if(dot.Tm === team) {
                                     var y = yScale(parseFloat(dot.avgMin));
@@ -174,14 +181,17 @@ $('document').ready(function() {
                 });
             };
             
-            selectTeam('UTA');
+            // selectTeam('UTA');
+            $('#myDropdown').on('click', function(e) {
+                d3.selectAll(".Tmdots").remove();
+                var team = e.target.text;
+                selectTeam(team);
+            });
         });
         $('.dropbtn').on('click', function() {
             myFunction();
         });
-        $('#myDropdown').on('click', function(e) {
-            console.log(e.target.text);
-        });
+        
     };
     
     moneyPerMinute();
