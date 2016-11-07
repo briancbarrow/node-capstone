@@ -1,6 +1,6 @@
 $('document').ready(function() {
     var height = screen.height * .60,
-    width = screen.width * .8,
+    width = screen.width * .79,
     padding = 50;
     
     function myFunction() {
@@ -97,7 +97,7 @@ $('document').ready(function() {
                                 }
                             })
                             .style('stroke', '#000')
-                            .style('fill', '#ffe34c')
+                            .style('fill', '#FAFFF9')
                             .style('stroke-width', 1.5);
                             
             var tool = d3.select('body')
@@ -126,7 +126,7 @@ $('document').ready(function() {
             
             dots.on('mouseout', function(d) {
                 d3.select(this)
-                    .style('fill', '#ffe34c')
+                    .style('fill', '#FAFFF9')
                     .style('stroke', 'black')
                     .attr('r', 5);
                 tool.transition()
@@ -152,8 +152,8 @@ $('document').ready(function() {
                                     return 'translate(-10, -10)';
                                 }
                             })
-                            .style('stroke', '#A3F7B5')
-                            .style('fill', '#086788')
+                            .style('stroke', '#FFA987')
+                            .style('fill', '#C20114')
                             .style('stroke-width', 1.5);
                             
                 Tmdots.on('mouseover', function(d) {
@@ -174,7 +174,7 @@ $('document').ready(function() {
                 
                 Tmdots.on('mouseout', function(d) {
                     d3.select(this)
-                        .style('fill', '#006032');
+                        .style('fill', '#C20114');
                     tool.transition()
                         .duration(500);
                     tool.html('')
@@ -187,6 +187,9 @@ $('document').ready(function() {
                 d3.selectAll(".Tmdots").remove();
                 var team = e.target.text;
                 selectTeam(team);
+            });
+            $('.nba-reset').on('click', function(e) {
+                d3.selectAll(".Tmdots").remove();
             });
         });
         $('.dropbtn').on('click', function() {

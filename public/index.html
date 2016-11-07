@@ -12,55 +12,64 @@
     <script src="index.js"></script>
 </head>
 <body>
-    <div class="dropdown">
-      <button class="dropbtn">Select Team
-          <span class="caret"></span>
-      </button>
-      
-      <div id="myDropdown" class="dropdown-content">
-        <div class="row">
-            <a class="col-xs-2" href='#'>ATL</a>
-            <a class="col-xs-2" href='#'>BOS</a>
-            <a class="col-xs-2" href='#'>BRK</a>
-            <a class="col-xs-2" href='#'>CHO</a>
-            <a class="col-xs-2" href='#'>CHI</a>
-            <a class="col-xs-2" href='#'>CLE</a>
-        </div>
-        <div class="row">
-            <a class="col-xs-2" href='#'>DAL</a>
-            <a class="col-xs-2" href='#'>DEN</a>
-            <a class="col-xs-2" href='#'>DET</a>
-            <a class="col-xs-2" href='#'>GSW</a>
-            <a class="col-xs-2" href='#'>HOU</a>
-            <a class="col-xs-2" href='#'>IND</a>
-        </div>
-        <div class="row">
-            <a class="col-xs-2" href='#'>LAC</a>
-            <a class="col-xs-2" href='#'>LAL</a>
-            <a class="col-xs-2" href='#'>MEM</a>
-            <a class="col-xs-2" href='#'>MIA</a>
-            <a class="col-xs-2" href='#'>MIL</a>
-            <a class="col-xs-2" href='#'>MIN</a>
-        </div>
-        <div class="row">
-            <a class="col-xs-2" href='#'>NOP</a>
-            <a class="col-xs-2" href='#'>NYK</a>
-            <a class="col-xs-2" href='#'>OKC</a>
-            <a class="col-xs-2" href='#'>ORL</a>
-            <a class="col-xs-2" href='#'>PHI</a>
-            <a class="col-xs-2" href='#'>PHO</a>
-        </div>
-        <div class="row">
-            <a class="col-xs-2" href='#'>POR</a>
-            <a class="col-xs-2" href='#'>SAC</a>
-            <a class="col-xs-2" href='#'>SAS</a>
-            <a class="col-xs-2" href='#'>TOR</a>
-            <a class="col-xs-2" href='#'>UTA</a>
-            <a class="col-xs-2" href='#'>WAS</a>
-        </div>
-      </div>
-    </div>
+    <header class="main-header">
+        <h1>BBall Data-Viz</h1>
+        <!--<h5>Visualizing the game of Basketball</h5>-->
+    </header>
     
-    <div id="main-chart"></div>
-
+    <div id="chart-container">
+        <h3 class="chart-header">Money per Minute</h3>
+        <div class="dropdown">
+            <button class="dropbtn">Select Team
+                <span class="caret"></span>
+            </button>
+            <div id="myDropdown" class="dropdown-content">
+                <div class="row">
+                    <a class="col-xs-2" href='#'>ATL</a>
+                    <a class="col-xs-2" href='#'>BOS</a>
+                    <a class="col-xs-2" href='#'>BRK</a>
+                    <a class="col-xs-2" href='#'>CHO</a>
+                    <a class="col-xs-2" href='#'>CHI</a>
+                    <a class="col-xs-2" href='#'>CLE</a>
+                </div>
+                <div class="row">
+                    <a class="col-xs-2" href='#'>DAL</a>
+                    <a class="col-xs-2" href='#'>DEN</a>
+                    <a class="col-xs-2" href='#'>DET</a>
+                    <a class="col-xs-2" href='#'>GSW</a>
+                    <a class="col-xs-2" href='#'>HOU</a>
+                    <a class="col-xs-2" href='#'>IND</a>
+                </div>
+                <div class="row">
+                    <a class="col-xs-2" href='#'>LAC</a>
+                    <a class="col-xs-2" href='#'>LAL</a>
+                    <a class="col-xs-2" href='#'>MEM</a>
+                    <a class="col-xs-2" href='#'>MIA</a>
+                    <a class="col-xs-2" href='#'>MIL</a>
+                    <a class="col-xs-2" href='#'>MIN</a>
+                </div>
+                <div class="row">
+                    <a class="col-xs-2" href='#'>NOP</a>
+                    <a class="col-xs-2" href='#'>NYK</a>
+                    <a class="col-xs-2" href='#'>OKC</a>
+                    <a class="col-xs-2" href='#'>ORL</a>
+                    <a class="col-xs-2" href='#'>PHI</a>
+                    <a class="col-xs-2" href='#'>PHO</a>
+                </div>
+                <div class="row">
+                    <a class="col-xs-2" href='#'>POR</a>
+                    <a class="col-xs-2" href='#'>SAC</a>
+                    <a class="col-xs-2" href='#'>SAS</a>
+                    <a class="col-xs-2" href='#'>TOR</a>
+                    <a class="col-xs-2" href='#'>UTA</a>
+                    <a class="col-xs-2" href='#'>WAS</a>
+                </div>
+            </div>
+        </div>
+        <div class="reset">
+            <button class="nba-reset">Clear Filter</button>
+        </div>
+        <hr>
+        <div id="main-chart"></div>
+    </div>
 </body>
