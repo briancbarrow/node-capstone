@@ -19,9 +19,20 @@ $('document').ready(function() {
           }
         }
       }
+      if (!event.target.matches('.fa-1')) {
+        var aboutDropdown = document.getElementById("aboutModal");
+        if (aboutDropdown.classList.contains('show')) {
+            aboutDropdown.classList.remove('show');
+        }
+      }
     }
     
     var moneyPerMinute = function(team) {
+        
+        var showModal = function() {
+            $('#aboutModal').html('<div><p>Money per minute shows the amount of money each player is making per minute they are on the court</p> <p>I assumed all players are going to play 82 games this year to find their salary per games played, then I took their avg minutes per game to find the salary per minute of play time.</p></div>');
+            document.getElementById("aboutModal").classList.toggle("show");
+        };
     
         d3.csv('stats.csv', function(players) {
             // var data = players.map(function(d) {
@@ -195,7 +206,9 @@ $('document').ready(function() {
         $('.dropbtn').on('click', function() {
             myFunction();
         });
-        
+        $('.fa-1').on('click', function() {
+            showModal();
+        });
     };
     
     moneyPerMinute();
