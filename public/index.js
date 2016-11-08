@@ -1,10 +1,10 @@
 $('document').ready(function() {
-    var height = screen.height * .60,
-    width = screen.width * .79,
+    var height = window.innerHeight * .60,
+    width = window.innerWidth * .79,
     padding = 50;
     
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
+    function dropdownToggle() {
+        document.getElementById("teamDropdown").classList.toggle("show");
     };
     
     // Close the dropdown menu if the user clicks outside of it
@@ -19,7 +19,7 @@ $('document').ready(function() {
           }
         }
       }
-      if (!event.target.matches('.fa-1')) {
+      if (!event.target.matches('.fa-question-circle-o')) {
         var aboutDropdown = document.getElementById("aboutModal");
         if (aboutDropdown.classList.contains('show')) {
             aboutDropdown.classList.remove('show');
@@ -27,7 +27,7 @@ $('document').ready(function() {
       }
     }
     
-    var moneyPerMinute = function(team) {
+    var moneyPerMinute = function() {
         
         var showModal = function() {
             $('#aboutModal').html('<div><p>Money per minute shows the amount of money each player is making per minute they are on the court</p> <p>I assumed all players are going to play 82 games this year to find their salary per games played, then I took their avg minutes per game to find the salary per minute of play time.</p></div>');
@@ -95,18 +95,10 @@ $('document').ready(function() {
                             .attr('class', 'dots')
                             .attr('r', 5)
                             .attr('transform', function(dot) {
-                                if(team === undefined) {
                                     var y = yScale(parseFloat(dot.avgMin));
                                     var x = xScale(parseFloat(dot['$/Minute']));
                                     return 'translate(' + x +',' + y + ')';
-                                } else if(dot.Tm === team) {
-                                    var y = yScale(parseFloat(dot.avgMin));
-                                    var x = xScale(parseFloat(dot['$/Minute']));
-                                    return 'translate(' + x +',' + y + ')';
-                                } else {
-                                    return 'translate(-10, -10)';
-                                }
-                            })
+                                })
                             .style('stroke', '#000')
                             .style('fill', '#FAFFF9')
                             .style('stroke-width', 1.5);
@@ -125,7 +117,7 @@ $('document').ready(function() {
                     
                     
                 tool.transition()
-                    .duration(200);
+                    .duration(2000);
                 tool.html('<p class="tool-text">' + d.Player + '</p>' +
                             '<p class="tool-text">' + d.Pos + '</p>' + 
                             '<p class="tool-text">' + d.Tm + '</p>' + 
@@ -194,7 +186,7 @@ $('document').ready(function() {
             };
             
             // selectTeam('UTA');
-            $('#myDropdown').on('click', function(e) {
+            $('#teamDropdown').on('click', function(e) {
                 d3.selectAll(".Tmdots").remove();
                 var team = e.target.text;
                 selectTeam(team);
@@ -204,9 +196,9 @@ $('document').ready(function() {
             });
         });
         $('.dropbtn').on('click', function() {
-            myFunction();
+            dropdownToggle();
         });
-        $('.fa-1').on('click', function() {
+        $('.fa-question-circle-o').on('click', function() {
             showModal();
         });
     };
