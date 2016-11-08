@@ -40,7 +40,7 @@ $('document').ready(function() {
             // })
             console.log(players)
             var xDomain = d3.extent(players, function(d) {
-                return parseInt(d['$/Minute'],10);
+                return parseInt(d['Dollar/Minute'],10);
             });
             
             var viz = d3.select('#main-chart')
@@ -96,7 +96,7 @@ $('document').ready(function() {
                             .attr('r', 5)
                             .attr('transform', function(dot) {
                                     var y = yScale(parseFloat(dot.avgMin));
-                                    var x = xScale(parseFloat(dot['$/Minute']));
+                                    var x = xScale(parseFloat(dot['Dollar/Minute']));
                                     return 'translate(' + x +',' + y + ')';
                                 })
                             .style('stroke', '#000')
@@ -121,7 +121,7 @@ $('document').ready(function() {
                 tool.html('<p class="tool-text">' + d.Player + '</p>' +
                             '<p class="tool-text">' + d.Pos + '</p>' + 
                             '<p class="tool-text">' + d.Tm + '</p>' + 
-                            '<p class="tool-text"> $' + parseFloat(d['$/Minute']).toFixed(2) +' per minute</p>')
+                            '<p class="tool-text"> $' + parseFloat(d['Dollar/Minute']).toFixed(2) +' per minute</p>')
                     .style('opacity', '0.9')
                     .style('left', (d3.event.pageX + 20) + 'px')
                     .style('top', (d3.event.pageY - 50) + 'px');
@@ -149,7 +149,7 @@ $('document').ready(function() {
                             .attr('transform', function(dot) {
                                 if(dot.Tm === team) {
                                     var y = yScale(parseFloat(dot.avgMin));
-                                    var x = xScale(parseFloat(dot['$/Minute']));
+                                    var x = xScale(parseFloat(dot['Dollar/Minute']));
                                     return 'translate(' + x +',' + y + ')';
                                 } else {
                                     return 'translate(-10, -10)';
@@ -169,7 +169,7 @@ $('document').ready(function() {
                     tool.html('<p class="tool-text">' + d.Player + '</p>' +
                                 '<p class="tool-text">' + d.Pos + '</p>' + 
                                 '<p class="tool-text">' + d.Tm + '</p>' + 
-                                '<p class="tool-text"> $' + parseFloat(d['$/Minute']).toFixed(2) +' per minute</p>')
+                                '<p class="tool-text"> $' + parseFloat(d['Dollar/Minute']).toFixed(2) +' per minute</p>')
                         .style('opacity', '0.9')
                         .style('left', (d3.event.pageX + 20) + 'px')
                         .style('top', (d3.event.pageY - 50) + 'px');
