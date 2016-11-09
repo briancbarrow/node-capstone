@@ -20,7 +20,6 @@ app.use(express.static('public'));
 
 
 var uri = process.env.MONGO_URI;
-// var uri = 'mongodb://brianb:mongo2016@ds141937.mlab.com:41937/basketball-stats';
 
 
 mongoose.connect(uri);
