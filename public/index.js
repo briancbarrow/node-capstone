@@ -1,7 +1,20 @@
+
+
 $('document').ready(function() {
     var height = window.innerHeight * .60,
     width = window.innerWidth * .79,
     padding = 50;
+    
+    Number.prototype.formatMoney = function(c, d, t){
+    var n = this, 
+        c = isNaN(c = Math.abs(c)) ? 2 : c, 
+        d = d == undefined ? "." : d, 
+        t = t == undefined ? "," : t, 
+        s = n < 0 ? "-" : "", 
+        i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))), 
+        j = (j = i.length) > 3 ? j % 3 : 0;
+       return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+     };
     
     function dropdownToggle() {
         document.getElementById("teamDropdown").classList.toggle("show");
@@ -27,19 +40,23 @@ $('document').ready(function() {
       }
     }
     
+    
+    
     var moneyPerMinute = function() {
+        // var height = $('#main-chart').height(),
+        // width = $('#main-chart').height(),
+        // padding = $('#main-chart').height() * .05;
         
         var showModal = function() {
             $('#aboutModal').html('<div><p>Money per minute shows the amount of money each player is making per minute they are on the court</p> <p>I assumed all players are going to play 82 games this year to find their salary per games played, then I took their avg minutes per game to find the salary per minute of play time.</p></div>');
             document.getElementById("aboutModal").classList.toggle("show");
         };
-    
-        d3.csv('stats.csv', function(players) {
-            // var data = players.map(function(d) {
-            //     console.log('d', d);
-            // })
-            console.log(players)
+        
+        
+        
+        $.getJSON('/api/stats', function(players) {
             var xDomain = d3.extent(players, function(d) {
+                console.log(d.PlayerName)
                 return parseInt(d['Dollar/Minute'],10);
             });
             
@@ -107,7 +124,7 @@ $('document').ready(function() {
                             .append('div')
                             .attr('class', 'tooltip')
                             .style('opacity', '0')
-                            .style('background-color', '#000');
+                            .style('background-color', 'gray');
             
             dots.on('mouseover', function(d) {
                 d3.select(this)
@@ -118,11 +135,11 @@ $('document').ready(function() {
                     
                 tool.transition()
                     .duration(2000);
-                tool.html('<p class="tool-text">' + d.Player + '</p>' +
+                tool.html('<p class="tool-text">' + d.PlayerName + '</p>' +
                             '<p class="tool-text">' + d.Pos + '</p>' + 
                             '<p class="tool-text">' + d.Tm + '</p>' + 
-                            '<p class="tool-text"> $' + parseFloat(d['Dollar/Minute']).toFixed(2) +' per minute</p>')
-                    .style('opacity', '0.9')
+                            '<p class="tool-text"> $' + parseFloat(d['Dollar/Minute']).formatMoney(2) +' per minute</p>')
+                    .style('opacity', '0.99')
                     .style('left', (d3.event.pageX + 20) + 'px')
                     .style('top', (d3.event.pageY - 50) + 'px');
             });
@@ -140,6 +157,7 @@ $('document').ready(function() {
             
             var selectTeam = function(team) {
                 console.log('triggered Select Team')
+                $('.dropbtn').html(team + '<span class="caret"></span>');
                 var Tmdots = viz.selectAll('.Tmdots')
                             .data(players)
                             .enter()
@@ -170,7 +188,7 @@ $('document').ready(function() {
                                 '<p class="tool-text">' + d.Pos + '</p>' + 
                                 '<p class="tool-text">' + d.Tm + '</p>' + 
                                 '<p class="tool-text"> $' + parseFloat(d['Dollar/Minute']).toFixed(2) +' per minute</p>')
-                        .style('opacity', '0.9')
+                        .style('opacity', '0.99')
                         .style('left', (d3.event.pageX + 20) + 'px')
                         .style('top', (d3.event.pageY - 50) + 'px');
                 });
@@ -192,9 +210,12 @@ $('document').ready(function() {
                 selectTeam(team);
             });
             $('.nba-reset').on('click', function(e) {
+                $('.dropbtn').html('Select Team <span class="caret"></span>');
                 d3.selectAll(".Tmdots").remove();
             });
         });
+    
+        
         $('.dropbtn').on('click', function() {
             dropdownToggle();
         });

@@ -1,3 +1,6 @@
+// @windowHeight: unit(`$(window).height() * .80`, px);
+
+
 body {
     text-align: center;
     background-color: #CAD2C5;
@@ -32,13 +35,23 @@ body {
     }
 }
 
+#main-chart {
+    height: 80%;
+    width: 79%;
+}
+
 hr {
     margin: 0 0 0 0;
     border-top: 1px solid gray;
 }
 
-.tool-text {
-    color: #fff;
+.tooltip {
+    border-radius: 5px;
+    padding: 2px 5px;
+    .tool-text {
+        color: #fff;
+        margin: 0px;
+    }
 }
 
 .axis path, .axis line {
@@ -116,6 +129,10 @@ hr {
 //             width: 100%;
 //         }
 //     }
+
+#dataDate {
+    padding-left: 5px;
+}
 
 button:focus {
     outline:0;
