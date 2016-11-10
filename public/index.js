@@ -54,9 +54,8 @@ $('document').ready(function() {
         
         
         
-        $.getJSON('/api/stats', function(players) {
+        $.getJSON('/api/moneypermin', function(players) {
             var xDomain = d3.extent(players, function(d) {
-                console.log(d.PlayerName)
                 return parseInt(d['Dollar/Minute'],10);
             });
             
