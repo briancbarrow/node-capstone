@@ -25,6 +25,7 @@ var uri = process.env.MONGOLAB_AQUA_URI;
 mongoose.connect(uri);
 
 var Stat = mongoose.model('Moneypermin', { PlayerName: String, 
+                                            Pos: String,
                                             Age: Number,
                                             Tm: String, 
                                             G: Number,
