@@ -19,7 +19,7 @@ app.use(express.static('public'));
 
 
 
-var uri = process.env.MONGO_URI;
+var uri = process.env.MONGOLAB_URI;
 
 
 mongoose.connect(uri);
