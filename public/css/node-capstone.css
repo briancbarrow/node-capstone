@@ -103,6 +103,7 @@ hr {
 }
 #dataDate {
   padding-left: 5px;
+  color: #808080;
 }
 button:focus {
   outline: 0;
