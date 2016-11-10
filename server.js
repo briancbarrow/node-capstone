@@ -73,6 +73,7 @@ var Stat = mongoose.model('Moneypermin', { PlayerName: String,
 
 
 app.get('/api/stats', function(req, res) {
+    console.log('running');
     Stat.find(function(err, data) {
         res.json(data);
     });
