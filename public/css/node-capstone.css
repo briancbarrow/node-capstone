@@ -61,6 +61,14 @@ hr {
   cursor: pointer;
   display: block;
 }
+.dropbtn-pos {
+  background-color: #A3F7B5;
+  color: #086788;
+}
+.dropbtn-tm {
+  background-color: #C20114;
+  color: #FFA987;
+}
 .reset {
   display: inline-block;
 }
@@ -73,7 +81,6 @@ hr {
   cursor: pointer;
   display: block;
 }
-/* Dropdown button on hover & focus */
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;

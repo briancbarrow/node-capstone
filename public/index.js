@@ -69,7 +69,10 @@ $('document').ready(function() {
                             .attr('height', height +  padding)
                             .attr('width', width)
                             .attr('fill', '#006032')
+                            .style('padding', '0 20px')
                             .style('background-color', '#FAFFF9');
+                            
+                
                 
                 
                 var yDomain = d3.extent(players, function(d) {
@@ -107,6 +110,16 @@ $('document').ready(function() {
                     .attr('dx', '-.8em')
                     .attr('dy', '.855em')
                     .attr('transform', 'rotate(-45)');
+                    
+                viz.append("text")             
+                  .attr("transform", "translate(" + (width/2) + " ," + (height + 30) + ")")
+                  .style("text-anchor", "middle")
+                  .text("Dollars Per Minute");
+                  
+                viz.append("text")
+                    .attr("text-anchor", "middle")
+                    .attr("transform", "translate("+ (padding/5) +","+(height/2)+")rotate(-90)") 
+                    .text("Avg Min Played Per Game");
                     
                 var dots = viz.selectAll('.dots')
                                 .data(players)
@@ -267,7 +280,8 @@ $('document').ready(function() {
                     selectPos(pos);
                 });
                 $('.nba-reset').on('click', function(e) {
-                    $('.dropbtn').html('Select Team <span class="caret"></span>');
+                    $('.dropbtn-tm').html('Select Team <span class="caret"></span>');
+                    $('.dropbtn-pos').html('Select Position <span class="caret"></span>');
                     d3.selectAll(".Tmdots").remove();
                     d3.selectAll(".Posdots").remove();
                 });
@@ -287,7 +301,7 @@ $('document').ready(function() {
         });
         
 
-    
+        
     
 });
 
