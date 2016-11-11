@@ -198,7 +198,7 @@ $('document').ready(function() {
                             
                         tool.transition()
                             .duration(200);
-                        tool.html('<p class="tool-text">' + d.Player + '</p>' +
+                        tool.html('<p class="tool-text">' + d.PlayerName + '</p>' +
                                     '<p class="tool-text">' + d.Pos + '</p>' + 
                                     '<p class="tool-text">' + d.Tm + '</p>' + 
                                     '<p class="tool-text"> $' + parseFloat(d['Dollar/Minute']).toFixed(2) +' per minute</p>')
@@ -247,7 +247,7 @@ $('document').ready(function() {
                             
                         tool.transition()
                             .duration(200);
-                        tool.html('<p class="tool-text">' + d.Player + '</p>' +
+                        tool.html('<p class="tool-text">' + d.PlayerName + '</p>' +
                                     '<p class="tool-text">' + d.Pos + '</p>' + 
                                     '<p class="tool-text">' + d.Tm + '</p>' + 
                                     '<p class="tool-text"> $' + parseFloat(d['Dollar/Minute']).toFixed(2) +' per minute</p>')
