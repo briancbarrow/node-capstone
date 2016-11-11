@@ -68,8 +68,8 @@ $('document').ready(function() {
                             .attr('id', 'main-svg')
                             .attr('height', height +  padding)
                             .attr('width', width)
-                            .attr('fill', 'gray')
-                            .style('background-color', 'black')
+                            .attr('fill', '#006032')
+                            .style('background-color', '#FAFFF9');
                 
                 
                 var yDomain = d3.extent(players, function(d) {
@@ -103,7 +103,7 @@ $('document').ready(function() {
                     .call(xAxis)
                     .selectAll('text')
                     .style('text-anchor', 'end')
-                    .style('fill', 'gray')
+                    .style('fill', '#006032')
                     .attr('dx', '-.8em')
                     .attr('dy', '.855em')
                     .attr('transform', 'rotate(-45)');
@@ -131,8 +131,8 @@ $('document').ready(function() {
                 
                 dots.on('mouseover', function(d) {
                     d3.select(this)
-                        .style('fill', '#A3F7B5')
-                        .style('stroke', 'white')
+                        .style('fill', '#96ADC8')
+                        // .style('stroke', 'black')
                         .attr('r', 6);
                         
                         
@@ -160,7 +160,7 @@ $('document').ready(function() {
                 
                 var selectTeam = function(team) {
                     console.log('triggered Select Team')
-                    $('.dropbtn').html(team + '<span class="caret"></span>');
+                    $('.dropbtn-tm').html(team + '<span class="caret"></span>');
                     var Tmdots = viz.selectAll('.Tmdots')
                                 .data(players)
                                 .enter()
@@ -182,7 +182,8 @@ $('document').ready(function() {
                                 
                     Tmdots.on('mouseover', function(d) {
                         d3.select(this)
-                            .style('fill', '#A3F7B5');
+                            .style('fill', '#A3F7B5')
+                            .attr('r', 6);
                             
                             
                         tool.transition()
@@ -208,7 +209,7 @@ $('document').ready(function() {
                 
                 var selectPos = function(pos) {
                     console.log('triggered Select Team')
-                    $('.dropbtn').html(pos + '<span class="caret"></span>');
+                    $('.dropbtn-pos').html(pos + '<span class="caret"></span>');
                     var Posdots = viz.selectAll('.Posdots')
                                 .data(players)
                                 .enter()
@@ -224,13 +225,14 @@ $('document').ready(function() {
                                         return 'translate(-10, -10)';
                                     }
                                 })
-                                .style('stroke', '#FFA987')
-                                .style('fill', '#C20114')
+                                .style('stroke', '#086788')
+                                .style('fill', '#A3F7B5')
                                 .style('stroke-width', 1.5);
                                 
                     Posdots.on('mouseover', function(d) {
                         d3.select(this)
-                            .style('fill', '#A3F7B5');
+                            .style('fill', '#96ADC8')
+                            .attr('r', 6);
                             
                             
                         tool.transition()
@@ -246,7 +248,7 @@ $('document').ready(function() {
                     
                     Posdots.on('mouseout', function(d) {
                         d3.select(this)
-                            .style('fill', '#C20114');
+                            .style('fill', '#A3F7B5');
                         tool.transition()
                             .duration(500);
                         tool.html('')
@@ -265,8 +267,9 @@ $('document').ready(function() {
                     selectPos(pos);
                 });
                 $('.nba-reset').on('click', function(e) {
-                    $('.dropbtn-tm').html('Select Team <span class="caret"></span>');
+                    $('.dropbtn').html('Select Team <span class="caret"></span>');
                     d3.selectAll(".Tmdots").remove();
+                    d3.selectAll(".Posdots").remove();
                 });
                 $('.fa-question-circle-o').on('click', function() {
                     showModal();
