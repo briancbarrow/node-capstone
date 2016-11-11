@@ -13,7 +13,6 @@ var Db = require('mongodb').Db,
     GridStore = require('mongodb').GridStore,
     Grid = require('mongodb').Grid,
     Code = require('mongodb').Code,
-    // BSON = require('mongodb').pure().BSON,
     assert = require('assert');
 app.use(express.static('public'));
 
@@ -68,10 +67,6 @@ var Stat = mongoose.model('Moneypermin', { PlayerName: String,
                                             'Dollar/Minute': Number,  
                                             'Dollar/game': Number
 }, 'moneypermin' );
-// Stat.create({Player: 'Brian Barrow'}, function(err, created) {
-//     console.log(arguments);
-// });
-
 
 app.get('/api/moneypermin', function(req, res) {
     Stat.find(function(err, data) {
@@ -81,4 +76,3 @@ app.get('/api/moneypermin', function(req, res) {
 app.listen(process.env.PORT || 8080);
 
 exports.app = app;
-// exports.storage = storage;

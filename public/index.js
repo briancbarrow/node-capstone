@@ -51,9 +51,6 @@ $('document').ready(function() {
         
         $.getJSON('/api/moneypermin', function(players) {
             var moneyPerMinute = function() {
-                // var height = $('#main-chart').height(),
-                // width = $('#main-chart').height(),
-                // padding = $('#main-chart').height() * .05;
                 
                 var showModal = function() {
                     $('#aboutModal').html('<div><p>Money per minute shows the amount of money each player is making per minute they are on the court</p> <p>I assumed all players are going to play 82 games this year to find their salary per games played, then I took their avg minutes per game to find the salary per minute of play time.</p></div>');
@@ -300,9 +297,6 @@ $('document').ready(function() {
             dropdownTogglePos();
         });
         
-
-        
-    
 });
 
 
