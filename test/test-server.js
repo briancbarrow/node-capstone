@@ -8,11 +8,15 @@ var app = server.app;
 chai.use(chaiHttp);
 
 describe('Capstone', function() {
-    it('should return 200 on get', function(done) {
+    it('should return data points on get', function(done) {
         chai.request(app)
-            .get('/')
+            .get('/api/moneypermin')
             .end(function(err, res) {
+                should.equal(err, null);
                 res.should.have.status(200);
+                res.body.should.not.equal('null');
+                res.should.be.json;
+                res.body[0].Player.should.be.a('string');
                 done();
             });
     });
