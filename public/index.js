@@ -119,28 +119,23 @@ $('document').ready(function() {
                     .attr("transform", "translate("+ (padding/5) +","+(height/2)+")rotate(-90)") 
                     .text("Avg Min Played Per Game");
                     
-                var dots = viz.selectAll('.dots')
-                                .data(players)
-                                .enter()
-                                .append('circle')
-                                .attr('class', 'dots')
-                                .attr('r', 5)
-                                .attr('transform', function(dot) {
-                                        var y = yScale(parseFloat(dot.avgMin));
-                                        var x = xScale(parseFloat(dot['Dollar/Minute']));
-                                        return 'translate(' + x +',' + y + ')';
-                                    })
-                                .style('stroke', '#000')
-                                .style('fill', '#FAFFF9')
-                                .style('stroke-width', 1.5);
-                                
-                var tool = d3.select('body')
-                                .append('div')
-                                .attr('class', 'tooltip')
-                                .style('opacity', '0')
-                                .style('background-color', 'gray');
                 
-                dots.on('mouseover', function(d) {
+                var placeDots = function() {
+                    var dots = viz.selectAll('.dots')
+                            .data(players)
+                            .enter()
+                            .append('circle')
+                            .attr('class', 'dots')
+                            .attr('r', 5)
+                            .attr('transform', function(dot) {
+                                var y = yScale(parseFloat(dot.avgMin));
+                                var x = xScale(parseFloat(dot['Dollar/Minute']));
+                                return 'translate(' + x +',' + y + ')';
+                            })
+                            .style('stroke', '#000')
+                            .style('fill', '#FAFFF9')
+                            .style('stroke-width', 1.5);
+                    dots.on('mouseover', function(d) {
                     d3.select(this)
                         .style('fill', '#96ADC8')
                         // .style('stroke', 'black')
@@ -168,9 +163,18 @@ $('document').ready(function() {
                     tool.html('')
                         .style('opacity', '0');
                 });
+                }
+                placeDots();
+                var tool = d3.select('body')
+                                .append('div')
+                                .attr('class', 'tooltip')
+                                .style('opacity', '0')
+                                .style('background-color', 'gray');
+                
+                
                 
                 var selectTeam = function(team) {
-                    d3.selectAll(".dots").transition().style('opacity', 0);
+                    d3.selectAll(".dots").remove();
                     $('.dropbtn-tm').html(team + '<span class="caret"></span>');
                     var Tmdots = viz.selectAll('.Tmdots')
                                 .data(players)
@@ -219,7 +223,7 @@ $('document').ready(function() {
                 };
                 
                 var selectPos = function(pos) {
-                    d3.selectAll(".dots").transition().style('opacity', 0);
+                    d3.selectAll(".dots").remove();
                     $('.dropbtn-pos').html(pos + '<span class="caret"></span>');
                     var Posdots = viz.selectAll('.Posdots')
                                 .data(players)
@@ -283,6 +287,7 @@ $('document').ready(function() {
                     d3.selectAll(".Tmdots").transition().remove();
                     d3.selectAll(".Posdots").transition().remove();
                     d3.selectAll(".dots").transition().style('opacity', 1);
+                    placeDots();
                 });
                 $('.fa-question-circle-o').on('click', function() {
                     showModal();

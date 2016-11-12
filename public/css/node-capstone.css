@@ -2,9 +2,11 @@ body {
   text-align: center;
   background-color: #CCDBDC;
   color: #006032;
+  margin: 0;
+  padding: 0.1px;
 }
 .main-header {
-  margin: auto;
+  margin: 0 auto;
 }
 .main-header h1 {
   font-family: 'Play', sans-serif;
