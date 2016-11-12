@@ -1,6 +1,7 @@
-
-
 $('document').ready(function() {
+    $('#close-modal').on('click', function() {
+        $('#intro-modal').fadeOut(1000);
+    });
     var height = window.innerHeight * .60,
     width = window.innerWidth * .79,
     padding = 50;
@@ -169,7 +170,7 @@ $('document').ready(function() {
                 });
                 
                 var selectTeam = function(team) {
-                    console.log('triggered Select Team')
+                    d3.selectAll(".dots").transition().style('opacity', 0);
                     $('.dropbtn-tm').html(team + '<span class="caret"></span>');
                     var Tmdots = viz.selectAll('.Tmdots')
                                 .data(players)
@@ -218,7 +219,7 @@ $('document').ready(function() {
                 };
                 
                 var selectPos = function(pos) {
-                    console.log('triggered Select Team')
+                    d3.selectAll(".dots").transition().style('opacity', 0);
                     $('.dropbtn-pos').html(pos + '<span class="caret"></span>');
                     var Posdots = viz.selectAll('.Posdots')
                                 .data(players)
@@ -267,20 +268,21 @@ $('document').ready(function() {
                 };
                 
                 $('#teamDropdown').on('click', function(e) {
-                    d3.selectAll(".Tmdots").remove();
+                    d3.selectAll(".Tmdots").transition().remove();
                     var team = e.target.text;
                     selectTeam(team);
                 });
                 $('#posDropdown').on('click', function(e) {
-                    d3.selectAll(".Posdots").remove();
+                    d3.selectAll(".Posdots").transition().remove();
                     var pos = e.target.text;
                     selectPos(pos);
                 });
                 $('.nba-reset').on('click', function(e) {
                     $('.dropbtn-tm').html('Select Team <span class="caret"></span>');
                     $('.dropbtn-pos').html('Select Position <span class="caret"></span>');
-                    d3.selectAll(".Tmdots").remove();
-                    d3.selectAll(".Posdots").remove();
+                    d3.selectAll(".Tmdots").transition().remove();
+                    d3.selectAll(".Posdots").transition().remove();
+                    d3.selectAll(".dots").transition().style('opacity', 1);
                 });
                 $('.fa-question-circle-o').on('click', function() {
                     showModal();
