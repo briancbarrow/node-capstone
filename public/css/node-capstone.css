@@ -20,6 +20,9 @@ body {
   position: absolute;
   z-index: 1;
 }
+#intro-modal .modal-text {
+  padding: 5px;
+}
 #modal-body {
   max-width: 81%;
   background-color: #FAFFF9;
@@ -35,7 +38,7 @@ body {
   font-family: 'Play', sans-serif;
   margin: auto;
   margin-top: 15px;
-  max-width: 81%;
+  max-width: 85%;
   background-color: #FAFFF9;
   border-radius: 5px;
 }
