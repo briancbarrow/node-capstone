@@ -272,7 +272,7 @@ $('document').ready(function() {
                 };
                 
                 $('#teamDropdown').on('click', function(e) {
-                    d3.selectAll(".Tmdots").transition().remove();
+                    d3.selectAll(".Tmdots").remove();
                     var team = e.target.text;
                     selectTeam(team);
                 });
