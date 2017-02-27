@@ -139,4 +139,9 @@ hr {
 button:focus {
   outline: 0;
 }
+
+.contact-link {
+  margin: 10px;
+  color: black;
+}
 /*# sourceMappingURL=node-capstone.css.map */
